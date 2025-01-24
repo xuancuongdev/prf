@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Cài Đặt Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'SF Pro Display', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: left;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 360px;
+            overflow: hidden;
+        }
+        .game-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+        .game-info {
+            flex: 1;
+        }
+        .game-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 5px;
+        }
+        .download-count {
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+        .slider {
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        .slider-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .slider-button {
+            width: 10px;
+            height: 10px;
+            background-color: #555;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .slider-button.active {
+            background-color: #3b82f6;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+        .install-button {
+            background-color: #007aff;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .install-button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            <img src="https://play-lh.googleusercontent.com/5U5CfcgH2zmrYrSBFR8zje3ht9HTrmOcDek1wcJdL1z9a5KnS9bxo4WYoeQ6_Nd5EA=w480-h960-rw" alt="Game Icon" class="game-icon">
+            <div class="game-info">
+                <div class="game-title">AOV Maps</div>
+                <div class="download-count">Cheat Menu Game</div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="https://github.com/WeansHHN/AOV-INSTALL/blob/main/img/image-demo-1.jpg?raw=true" alt="Screenshot 1"></div>
+                <div class="slide"><img src="https://github.com/WeansHHN/AOV-INSTALL/blob/main/img/image-demo-2.jpg?raw=true" alt="Screenshot 2"></div>
+                <div class="slide"><img src="https://github.com/WeansHHN/AOV-INSTALL/blob/main/img/image-demo-3.jpg?raw=true" alt="Screenshot 3"></div>
+            </div>
+        </div>
+        <div class="slider-buttons">
+            <div class="slider-button active" onclick="currentSlide(1)"></div>
+            <div class="slider-button" onclick="currentSlide(2)"></div>
+            <div class="slider-button" onclick="currentSlide(3)"></div>
+        </div>
+        <button class="install-button" >Cài Đặt</button>
+    </div>
+    <script>
+        let slideIndex = 1;
+        let slideInterval;
+
+        showSlides(slideIndex);
+        startSlideShow();
+
+        function currentSlide(n) {
+            clearInterval(slideInterval);
+            showSlides(slideIndex = n);
+            startSlideShow();
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("slider-button");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(() => {
+                slideIndex++;
+                showSlides(slideIndex);
+            }, 5000); // Change slide every 5 seconds
+        }
+    </script>
+</body>
+</html>
